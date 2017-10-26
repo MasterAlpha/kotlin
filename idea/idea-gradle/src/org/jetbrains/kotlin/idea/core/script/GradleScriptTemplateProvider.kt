@@ -22,12 +22,12 @@ import com.intellij.openapi.externalSystem.util.ExternalSystemApiUtil
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 import org.gradle.tooling.ProjectConnection
-import org.jetbrains.kotlin.gradle.kdsl.DEFAULT_SCRIPT_NAME
 import org.jetbrains.kotlin.lexer.KotlinLexer
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.script.ScriptTemplatesProvider
 import org.jetbrains.plugins.gradle.service.execution.GradleExecutionHelper
 import org.jetbrains.plugins.gradle.settings.GradleExecutionSettings
+import org.jetbrains.plugins.gradle.util.GradleConstants
 import java.io.File
 import java.util.*
 import kotlin.script.experimental.dependencies.ScriptDependencies
@@ -170,7 +170,7 @@ fun topLevelSectionCodeTextTokens(script: CharSequence, sectionIdentifier: Strin
                 .map { it.tokenSequence }
 
 
-private const val KOTLIN_BUILD_FILE_NAME = DEFAULT_SCRIPT_NAME
+private const val KOTLIN_BUILD_FILE_NAME = GradleConstants.KOTLIN_DSL_SCRIPT_NAME
 
 class GradleScriptDefaultDependenciesProvider(
         private val scriptDependenciesCache: ScriptDependenciesCache
