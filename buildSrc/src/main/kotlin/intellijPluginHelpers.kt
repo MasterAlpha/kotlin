@@ -21,6 +21,13 @@ fun Project.configureIntellijPlugin(body: (IntelliJPluginExtension.() -> Unit) =
         configureDefaultDependencies = false
         body()
     }
+
+    val intellijTasks = listOf("patchPluginXml", "prepareSandbox", "prepareTestingSandbox",
+                               "verifyPlugin", "runIde", "buildPlugin", "publishPlugin")
+    intellijTasks.forEach {
+        tasks.findByName(it)?.setOnlyIf { false }
+        ?: logger.warn("intellij task $it not found")
+    }
 }
 
 // reimplementation of helpers from intellij plugin, since it is not convenient to use gradle closures from kotlin build scripts
@@ -66,6 +73,6 @@ fun Project.intellijExtra(extraName: String, filter: (PatternFilterable.() -> Un
 fun Project.intellijCoreJar() = intellijExtra("intellij-core") { include("intellij-core.jar") }
 fun Project.intellijCoreJarDependencies(filter: (PatternFilterable.() -> Unit) = {}) =
         intellij {
-            include(rootProject.extra["ideaSdkIntellijCoreDependencies"] as List<String>)
+            include(rootProject.extra["IntellijCoreDependencies"] as List<String>)
             filter()
         }

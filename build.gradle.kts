@@ -118,7 +118,7 @@ extra["versions.ant"] = "1.8.2"
 extra["versions.android"] = "2.3.1"
 
 // the former "ideaSdk/core" dir contents without intellij-core.jar
-extra["ideaSdkIntellijCoreDependencies"] =
+extra["IntellijCoreDependencies"] =
         listOf("annotations.jar",
                "asm-all.jar",
                "guava-*.jar",
