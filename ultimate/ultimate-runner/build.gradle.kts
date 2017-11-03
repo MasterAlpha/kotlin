@@ -1,8 +1,12 @@
+import org.jetbrains.intellij.IntelliJPluginExtension
+
 apply { plugin("kotlin") }
 
-dependencies {
+configureIntellijPlugin {
+    version = (rootProject.extra["versions.intellij"] as String).replaceFirst("IC-", "IU-")
+}
 
-    compile(ideaUltimateSdkDeps("*.jar"))
+dependencies {
     compileOnly(project(":idea"))
     compileOnly(project(":idea:idea-maven"))
     compileOnly(project(":idea:idea-gradle"))
@@ -11,6 +15,11 @@ dependencies {
     runtimeOnly(files(toolsJar()))
 }
 
+afterEvaluate {
+    dependencies {
+        compile(intellij())
+    }
+}
 
 val runUltimate by task<JavaExec> {
     dependsOn(":dist", ":prepare:idea-plugin:idea-plugin", ":ideaPlugin", ":ultimate:idea-ultimate-plugin")
@@ -19,7 +28,9 @@ val runUltimate by task<JavaExec> {
 
     main = "com.intellij.idea.Main"
 
-    workingDir = File(projectDir.parentFile, "ideaSDK", "bin")
+    afterEvaluate {
+        workingDir = project.the<IntelliJPluginExtension>().ideaDependency.classes
+    }
 
     val ideaUltimatePluginDir: File by rootProject.extra
 
