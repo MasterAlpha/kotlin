@@ -5,7 +5,8 @@ apply { plugin("kotlin") }
 
 dependencies {
     compile(project(":kotlin-stdlib"))
-    compile(project(":core"))
+    compile(project(":core:descriptors"))
+    compile(project(":core:descriptor.loader.java"))
     compile(project(":compiler:backend"))
     compile(project(":compiler:cli-common"))
     compile(project(":compiler:frontend"))

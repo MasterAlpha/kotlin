@@ -41,8 +41,10 @@ configurations {
 
 dependencies {
     proguardDeps project(':kotlin-stdlib')
+    shadows project(':core:descriptors')
+    shadows project(':core:deserialization')
+    shadows project(':core:descriptor.loader.java')
     shadows project(':core:util.runtime')
-    shadows project(':core')
     shadows 'javax.inject:javax.inject:1'
     shadows project(path: ':custom-dependencies:protobuf-lite', configuration: 'default')
 
