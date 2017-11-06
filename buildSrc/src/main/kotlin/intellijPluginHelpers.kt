@@ -25,7 +25,7 @@ fun Project.configureIntellijPlugin(body: (IntelliJPluginExtension.() -> Unit) =
     val intellijTasks = listOf("patchPluginXml", "prepareSandbox", "prepareTestingSandbox",
                                "verifyPlugin", "runIde", "buildPlugin", "publishPlugin")
     intellijTasks.forEach {
-        tasks.findByName(it)?.setOnlyIf { false }
+        tasks.findByName(it)?.also { tasks.remove(it) }
         ?: logger.warn("intellij task $it not found")
     }
 }
