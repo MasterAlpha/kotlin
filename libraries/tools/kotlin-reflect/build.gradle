@@ -143,7 +143,6 @@ task relocateCoreSources(type: Copy) {
 
     from "${core}/descriptor.loader.java/src/${commonPackage}"
     from "${core}/descriptors/src/${commonPackage}"
-    from "${core}/descriptors.runtime/src/${commonPackage}"
     from "${core}/deserialization/src/${commonPackage}"
     from "${core}/util.runtime/src/${commonPackage}"
 

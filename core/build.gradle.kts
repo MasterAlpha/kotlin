@@ -18,7 +18,6 @@ sourceSets {
     "main" {
         java.srcDirs("descriptor.loader.java/src",
                      "descriptors/src",
-                     "descriptors.runtime/src",
                      "deserialization/src")
         resources.srcDirs("descriptor.loader.java/src", "deserialization/src").apply { include("META-INF/**") }
     }
